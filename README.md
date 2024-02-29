@@ -16,8 +16,6 @@ Suggested changes:
 
 - add a log line to `InitializeUserDetailsBeanManagerConfigurer`, at the `INFO` or `DEBUG` level, notifying the user
   which `UserDetailsService` is being used.
-- When there are multiple `UserDetailsService` beans, add a `WARN` log notifying the user that they are not
-  auto-configured / used.
 
 **2. single-auth-provider**
 
@@ -50,3 +48,15 @@ Suggested changes:
 
 - add a log line to `InitializeAuthenticationProviderBeanManagerConfigurer`, at the `WARN` level, notifying the user
   that the `AuthenticationProvider` beans, with their names, are ignored.
+
+**4. two-user-details-service**
+
+Runs on port 8083.
+
+When there are multiple `UserDetailsService` beans, `InitializeUserDetailsBeanManagerConfigurer` does not auto-configure
+and users cannot log in.
+
+Suggested changes:
+
+- When there are multiple `UserDetailsService` beans, add a `WARN` log notifying the user that they are not
+  auto-configured / used.
